@@ -1,4 +1,9 @@
 # Tesla Supercharger
+
+<a href="https://azuredeploy.net/?repository=https://github.com/marcelzehner/TeslaSupercharger" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
 This repository contains a fully working management solution for Azure Log Analytics. The solution collects data about available Superchargers from a public webpage and ingests the data into an Azure Log Analytics workspace. The collection and ingestion runbook is triggered automatically on a daily interval. The collected results are aggregated and visualized. The full solution can be deployed using a simple ARM deployment. All files needed are provided.
 
 ## Components
