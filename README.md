@@ -1,6 +1,6 @@
 # Tesla Supercharger
 
-<a href="https://azuredeploy.net/?repository=https://github.com/marcelzehner/TeslaSupercharger" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMarcelZehner%2FTeslaSupercharger%2Fmaster%2FLogAnalyticsSolution-TeslaSupercharger%2Fmaster.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
