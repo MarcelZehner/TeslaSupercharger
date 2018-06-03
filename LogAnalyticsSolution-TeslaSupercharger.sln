@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "LogAnalyticsSolution-TeslaSupercharger", "LogAnalyticsSolution-TeslaSupercharger\LogAnalyticsSolution-TeslaSupercharger.deployproj", "{2FD9AC2F-9322-4730-89E8-D1476B3A9AFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FD9AC2F-9322-4730-89E8-D1476B3A9AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD9AC2F-9322-4730-89E8-D1476B3A9AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD9AC2F-9322-4730-89E8-D1476B3A9AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD9AC2F-9322-4730-89E8-D1476B3A9AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0978E8A2-BEBE-4E2B-BA00-2F115414DF4A}
+	EndGlobalSection
+EndGlobal
