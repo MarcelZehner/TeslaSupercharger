@@ -1,0 +1,507 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "resourcegroup": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "subscriptionId": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "workspace": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "workspaceapiversion": {
+            "type": "string",
+            "defaultValue": ""
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "[parameters('workspaceapiversion')]",
+            "name": "[parameters('workspace')]",
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "location": "[parameters('location')]",
+            "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroup'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspace'))]",
+            "resources": [
+                {
+                    "apiVersion": "2015-11-01-preview",
+                    "name": "Tesla Superchargers",
+                    "type": "views",
+                    "location": "[parameters('location')]",
+                    "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroup'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspace'),'/views/Tesla Superchargers')]",
+                    "dependson": [
+                        "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroup'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspace'))]"
+                    ],
+                    "properties": {
+                        "Id": "Tesla Superchargers",
+                        "Name": "Tesla Superchargers",
+                        "Author": null,
+                        "Source": "Local",
+                        "Version": 2,
+                        "Dashboard": [
+                            {
+                                "Id": "SingleQueryDonutBuilderBladeV1",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "GLOBAL",
+                                        "newGroup": false,
+                                        "icon": "",
+                                        "useIcon": false
+                                    },
+                                    "Header": {
+                                        "Title": "Tesla Superchargers by Country",
+                                        "Subtitle": ""
+                                    },
+                                    "Donut": {
+                                        "Query": "TeslaSuperchargerData_CL | summarize number = dcount(Name_s) by Country_s | sort by number desc ",
+                                        "CenterLegend": {
+                                            "Text": "Total",
+                                            "Operation": "Sum",
+                                            "ArcsToSelect": []
+                                        },
+                                        "Options": {
+                                            "colors": [
+                                                "#007233",
+                                                "#009e49",
+                                                "#55d455"
+                                            ],
+                                            "valueColorMapping": []
+                                        },
+                                        "NavigationSelect": {}
+                                    },
+                                    "List": {
+                                        "Query": "TeslaSuperchargerData_CL | summarize number = dcount(Name_s) by Country_s | sort by number desc ",
+                                        "HideGraph": false,
+                                        "enableSparklines": false,
+                                        "ColumnsTitle": {
+                                            "Name": "Country",
+                                            "Value": "Number"
+                                        },
+                                        "Color": "#007233",
+                                        "thresholds": {
+                                            "isEnabled": false,
+                                            "values": [
+                                                {
+                                                    "name": "Normal",
+                                                    "threshold": "Default",
+                                                    "color": "#009e49",
+                                                    "isDefault": true
+                                                },
+                                                {
+                                                    "name": "Warning",
+                                                    "threshold": "60",
+                                                    "color": "#fcd116",
+                                                    "isDefault": false
+                                                },
+                                                {
+                                                    "name": "Error",
+                                                    "threshold": "90",
+                                                    "color": "#ba141a",
+                                                    "isDefault": false
+                                                }
+                                            ]
+                                        },
+                                        "NameDSVSeparator": "",
+                                        "NavigationQuery": "search {selected item} | sort by TimeGenerated desc",
+                                        "NavigationSelect": {
+                                            "NavigationQuery": "search {selected item} | sort by TimeGenerated desc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "Id": "SingleQueryDonutBuilderBladeV1",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "GLOBAL",
+                                        "newGroup": false,
+                                        "icon": "",
+                                        "useIcon": false
+                                    },
+                                    "Header": {
+                                        "Title": "10 largest Tesla Superchargers (by Stall Count)",
+                                        "Subtitle": ""
+                                    },
+                                    "Donut": {
+                                        "Query": "TeslaSuperchargerData_CL | sort by StallCount_d desc | where Status_s =~ \"OPEN\"  | distinct Name_s, StallCount_d, Country_s | sort by StallCount_d desc | limit 10  ",
+                                        "CenterLegend": {
+                                            "Text": "Total",
+                                            "Operation": "Sum",
+                                            "ArcsToSelect": []
+                                        },
+                                        "Options": {
+                                            "colors": [
+                                                "#007233",
+                                                "#009e49",
+                                                "#55d455"
+                                            ],
+                                            "valueColorMapping": []
+                                        },
+                                        "NavigationSelect": {}
+                                    },
+                                    "List": {
+                                        "Query": "TeslaSuperchargerData_CL | sort by StallCount_d desc | where Status_s =~ \"OPEN\"  | distinct Name_s, StallCount_d, Country_s | sort by StallCount_d desc | limit 10  ",
+                                        "HideGraph": false,
+                                        "enableSparklines": false,
+                                        "operation": "Summary",
+                                        "ColumnsTitle": {
+                                            "Name": "Location",
+                                            "Value": "Stall Count"
+                                        },
+                                        "Color": "#007233",
+                                        "thresholds": {
+                                            "isEnabled": false,
+                                            "values": [
+                                                {
+                                                    "name": "Normal",
+                                                    "threshold": "Default",
+                                                    "color": "#009e49",
+                                                    "isDefault": true
+                                                },
+                                                {
+                                                    "name": "Warning",
+                                                    "threshold": "60",
+                                                    "color": "#fcd116",
+                                                    "isDefault": false
+                                                },
+                                                {
+                                                    "name": "Error",
+                                                    "threshold": "90",
+                                                    "color": "#ba141a",
+                                                    "isDefault": false
+                                                }
+                                            ]
+                                        },
+                                        "NameDSVSeparator": "",
+                                        "NavigationQuery": "search {selected item} | sort by TimeGenerated desc",
+                                        "NavigationSelect": {
+                                            "NavigationQuery": "search {selected item} | sort by TimeGenerated desc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "Id": "NumberTileListBuilderBlade",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "GLOBAL",
+                                        "newGroup": false,
+                                        "icon": "",
+                                        "useIcon": false
+                                    },
+                                    "Tile": {
+                                        "Query": "TeslaSuperchargerData_CL | where Status_s =~ \"OPEN\" | distinct DateOpened_s, Country_s, StallCount_d | sort by DateOpened_s desc | limit 10 | summarize sum(StallCount_d)",
+                                        "Legend": "10 newest Tesla Supercharger (by Date Opened)",
+                                        "NavigationSelect": {}
+                                    },
+                                    "List": {
+                                        "Query": " TeslaSuperchargerData_CL | where Status_s =~ \"OPEN\" | distinct DateOpened_s, StallCount_d, Country_s | sort by DateOpened_s desc | limit 10",
+                                        "HideGraph": false,
+                                        "enableSparklines": false,
+                                        "operation": "Summary",
+                                        "ColumnsTitle": {
+                                            "Name": "Date Opened",
+                                            "Value": "Stall Count"
+                                        },
+                                        "Color": "#007233",
+                                        "thresholds": {
+                                            "isEnabled": false,
+                                            "values": [
+                                                {
+                                                    "name": "Normal",
+                                                    "threshold": "Default",
+                                                    "color": "#009e49",
+                                                    "isDefault": true
+                                                },
+                                                {
+                                                    "name": "Warning",
+                                                    "threshold": "60",
+                                                    "color": "#fcd116",
+                                                    "isDefault": false
+                                                },
+                                                {
+                                                    "name": "Error",
+                                                    "threshold": "90",
+                                                    "color": "#ba141a",
+                                                    "isDefault": false
+                                                }
+                                            ]
+                                        },
+                                        "NameDSVSeparator": "",
+                                        "NavigationQuery": "search {selected item} | sort by TimeGenerated desc",
+                                        "NavigationSelect": {
+                                            "NavigationQuery": "search {selected item} | sort by TimeGenerated desc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "Id": "NumberTileListBuilderBlade",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "GLOBAL",
+                                        "newGroup": false,
+                                        "icon": "",
+                                        "useIcon": false
+                                    },
+                                    "Tile": {
+                                        "Query": "TeslaSuperchargerData_CL | where Status_s =~ \"PERMIT\" or Status_s =~ \"CONSTRUCTION\" | distinct Name_s, StallCount_d, Country_s | sort by StallCount_d desc | limit 10 | summarize sum(StallCount_d)",
+                                        "Legend": "10 largest planned Tesla Superchargers (by Stall Count)",
+                                        "NavigationSelect": {}
+                                    },
+                                    "List": {
+                                        "Query": "TeslaSuperchargerData_CL | where Status_s =~ \"PERMIT\" or Status_s =~ \"CONSTRUCTION\" | distinct Name_s, StallCount_d, Country_s | sort by StallCount_d desc | limit 10",
+                                        "HideGraph": false,
+                                        "enableSparklines": false,
+                                        "operation": "Summary",
+                                        "ColumnsTitle": {
+                                            "Name": "Location",
+                                            "Value": "Stall Count"
+                                        },
+                                        "Color": "#007233",
+                                        "thresholds": {
+                                            "isEnabled": false,
+                                            "values": [
+                                                {
+                                                    "name": "Normal",
+                                                    "threshold": "Default",
+                                                    "color": "#009e49",
+                                                    "isDefault": true
+                                                },
+                                                {
+                                                    "name": "Warning",
+                                                    "threshold": "60",
+                                                    "color": "#fcd116",
+                                                    "isDefault": false
+                                                },
+                                                {
+                                                    "name": "Error",
+                                                    "threshold": "90",
+                                                    "color": "#ba141a",
+                                                    "isDefault": false
+                                                }
+                                            ]
+                                        },
+                                        "NameDSVSeparator": "",
+                                        "NavigationQuery": "search {selected item} | sort by TimeGenerated desc",
+                                        "NavigationSelect": {
+                                            "NavigationQuery": "search {selected item} | sort by TimeGenerated desc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "Id": "NumberTileListBuilderBlade",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "SWITZERLAND",
+                                        "newGroup": true,
+                                        "icon": "",
+                                        "useIcon": false
+                                    },
+                                    "Tile": {
+                                        "Query": "TeslaSuperchargerData_CL | where Country_s =~ \"Switzerland\" | summarize dcount(Name_s) ",
+                                        "Legend": "Tesla Superchargers Switzerland",
+                                        "NavigationSelect": {}
+                                    },
+                                    "List": {
+                                        "Query": "TeslaSuperchargerData_CL | where Country_s =~ \"Switzerland\" | distinct Name_s, StallCount_d | sort by StallCount_d desc",
+                                        "HideGraph": false,
+                                        "enableSparklines": false,
+                                        "operation": "Summary",
+                                        "ColumnsTitle": {
+                                            "Name": "Location",
+                                            "Value": "Stall Count"
+                                        },
+                                        "Color": "#dd5900",
+                                        "thresholds": {
+                                            "isEnabled": false,
+                                            "values": [
+                                                {
+                                                    "name": "Normal",
+                                                    "threshold": "Default",
+                                                    "color": "#009e49",
+                                                    "isDefault": true
+                                                },
+                                                {
+                                                    "name": "Warning",
+                                                    "threshold": "60",
+                                                    "color": "#fcd116",
+                                                    "isDefault": false
+                                                },
+                                                {
+                                                    "name": "Error",
+                                                    "threshold": "90",
+                                                    "color": "#ba141a",
+                                                    "isDefault": false
+                                                }
+                                            ]
+                                        },
+                                        "NameDSVSeparator": "",
+                                        "NavigationQuery": "search {selected item} | sort by TimeGenerated desc",
+                                        "NavigationSelect": {
+                                            "NavigationQuery": "search {selected item} | sort by TimeGenerated desc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "Id": "SingleQueryDonutBuilderBladeV1",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "DATA INGESTION",
+                                        "newGroup": true,
+                                        "icon": "",
+                                        "useIcon": false
+                                    },
+                                    "Header": {
+                                        "Title": "Data Ingestion Cycles",
+                                        "Subtitle": ""
+                                    },
+                                    "Donut": {
+                                        "Query": "TeslaSuperchargerData_CL | summarize count() by TimeGenerated",
+                                        "CenterLegend": {
+                                            "Text": "Total",
+                                            "Operation": "Sum",
+                                            "ArcsToSelect": []
+                                        },
+                                        "Options": {
+                                            "colors": [
+                                                "#442359",
+                                                "#68217a",
+                                                "#9b4f96"
+                                            ],
+                                            "valueColorMapping": []
+                                        },
+                                        "NavigationSelect": {}
+                                    },
+                                    "List": {
+                                        "Query": "TeslaSuperchargerData_CL | summarize count() by TimeGenerated",
+                                        "HideGraph": false,
+                                        "enableSparklines": false,
+                                        "operation": "Summary",
+                                        "ColumnsTitle": {
+                                            "Name": "Ingestion Date",
+                                            "Value": "Number of Records"
+                                        },
+                                        "Color": "#442359",
+                                        "thresholds": {
+                                            "isEnabled": false,
+                                            "values": [
+                                                {
+                                                    "name": "Normal",
+                                                    "threshold": "Default",
+                                                    "color": "#009e49",
+                                                    "isDefault": true
+                                                },
+                                                {
+                                                    "name": "Warning",
+                                                    "threshold": "60",
+                                                    "color": "#fcd116",
+                                                    "isDefault": false
+                                                },
+                                                {
+                                                    "name": "Error",
+                                                    "threshold": "90",
+                                                    "color": "#ba141a",
+                                                    "isDefault": false
+                                                }
+                                            ]
+                                        },
+                                        "NameDSVSeparator": "",
+                                        "NavigationQuery": "search {selected item} | sort by TimeGenerated desc",
+                                        "NavigationSelect": {
+                                            "NavigationQuery": "search {selected item} | sort by TimeGenerated desc"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "Id": "NotableQueriesBuilderBlade",
+                                "Type": "Blade",
+                                "Version": 0,
+                                "Configuration": {
+                                    "General": {
+                                        "title": "Query Examples",
+                                        "newGroup": false,
+                                        "preselectedFilters": "",
+                                        "renderMode": "grid"
+                                    },
+                                    "queries": [
+                                        {
+                                            "query": "TeslaSuperchargerData_CL",
+                                            "displayName": "All Tesla Supercharger data"
+                                        },
+                                        {
+                                            "query": "TeslaSuperchargerData_CL | distinct Name_s, StallCount_d | sort by StallCount_d desc",
+                                            "displayName": "Current list of Tesla Superchargers worldwide"
+                                        },
+                                        {
+                                            "query": "TeslaSuperchargerData_CL | distinct Name_s, StallCount_d | summarize sum(StallCount_d)",
+                                            "displayName": "Total Stall Count worldwide"
+                                        },
+                                        {
+                                            "query": "TeslaSuperchargerData_CL | where Country_s =~ \"Switzerland\" | distinct Name_s, StallCount_d | sort by StallCount_d desc",
+                                            "displayName": "Current list of Tesla Superchargers in Switzerland"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "Filters": [],
+                        "OverviewTile": {
+                            "Id": "SingleQueryDonutBuilderTileV1",
+                            "Type": "OverviewTile",
+                            "Version": 2,
+                            "Configuration": {
+                                "Donut": {
+                                    "Query": "TeslaSuperchargerData_CL | summarize number = dcount(Name_s) by Country_s | sort by number desc ",
+                                    "CenterLegend": {
+                                        "Text": "Total",
+                                        "Operation": "Sum",
+                                        "ArcsToSelect": []
+                                    },
+                                    "Options": {
+                                        "colors": [
+                                            "#007233",
+                                            "#009e49",
+                                            "#55d455"
+                                        ],
+                                        "valueColorMapping": []
+                                    }
+                                },
+                                "Advanced": {
+                                    "DataFlowVerification": {
+                                        "Enabled": true,
+                                        "Query": "search * | limit 1 | project TimeGenerated",
+                                        "Message": "There is no Tesla Supercharger data available to display yet. Make sure the appropriate runbook/script has been started at least once. After the very first ingestion of the data was successful, it can still take some time until all data is indexed and visible."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
