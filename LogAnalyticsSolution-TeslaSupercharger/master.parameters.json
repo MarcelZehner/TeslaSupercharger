@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "LogAnalyticsWorkspaceName": {
-      "value": "weu-prd-ala-solutionsbakery-02"
+      "value": "weu-prd-ala-solutionsbakery-88"
     },
     "AutomationAccountName": {
-      "value": "weu-prd-aut-solutionsbakery-02"
+      "value": "weu-prd-ala-solutionsbakery-88"
     }
   }
 }

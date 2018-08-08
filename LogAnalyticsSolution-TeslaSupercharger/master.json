@@ -547,7 +547,7 @@
       "apiVersion": "[variables('APIVersions').Automation]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]"
+        "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]"
       ],
       "properties": {
         "sku": {
