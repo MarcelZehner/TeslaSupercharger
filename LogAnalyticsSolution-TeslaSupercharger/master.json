@@ -547,6 +547,7 @@
       "apiVersion": "[variables('APIVersions').Automation]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]"
       ],
       "properties": {
         "sku": {
@@ -694,13 +695,7 @@
       "tags": {},
       "dependsOn": [
         "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]",
-        "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')), '/views/', variables('Names').TeslaSuperchargersViewName)]",
-        "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')), '/savedSearches/', variables('Names').SavedSearchesActiveSuperchargersPerCountryIDName)]",
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]",
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableLogAnalyticsWorkspaceIDNameVariableName)]",
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableLogAnalyticsWorkspaceKeyVariableName)]",
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableLogAnalyticsLogTypeVariableName)]",
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableDataSourceURIVariableName)]"
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]"
       ],
       "properties": {
         "workspaceResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]",
