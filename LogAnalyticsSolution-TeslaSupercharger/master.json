@@ -619,7 +619,8 @@
           "apiVersion": "[variables('APIVersions').Automation]",
           "location": "[resourceGroup().location]",
           "dependsOn": [
-            "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]"
+            "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]",
+            "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]"
           ],
           "tags": {},
           "properties": {
@@ -656,7 +657,8 @@
           "apiVersion": "[variables('APIVersions').Automation]",
           "location": "[resourceGroup().location]",
           "dependsOn": [
-            "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]"
+            "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]",
+            "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]"
           ],
           "properties": {
             "expiryTime": "9999-12-31T17:59:00+01:00",
@@ -695,7 +697,13 @@
       "tags": {},
       "dependsOn": [
         "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]",
-        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]"
+        "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')), '/views/', variables('Names').TeslaSuperchargersViewName)]",
+        "[concat('Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')), '/savedSearches/', variables('Names').SavedSearchesActiveSuperchargersPerCountryIDName)]",
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')))]",
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableLogAnalyticsWorkspaceIDNameVariableName)]",
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableLogAnalyticsWorkspaceKeyVariableName)]",
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableLogAnalyticsLogTypeVariableName)]",
+        "[concat('Microsoft.Automation/automationAccounts/', toLower(parameters('AutomationAccountName')), '/variables/', variables('Names').AutomationVariableDataSourceURIVariableName)]"
       ],
       "properties": {
         "workspaceResourceId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', toLower(parameters('LogAnalyticsWorkspaceName')))]",
