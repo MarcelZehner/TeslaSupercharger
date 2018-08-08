@@ -13,6 +13,9 @@ $ScriptRuntime = [System.DateTime]::UtcNow
 $TimestampField = ""
 
 #Get and prepare Supercharger data
+#Get and prepare Supercharger data
+$SecurityProtocolTypes = [System.Net.SecurityProtocolType]'Ssl3,Tls,Tls11,Tls12'
+[System.Net.ServicePointManager]::SecurityProtocol = $SecurityProtocolTypes
 $Results = Invoke-WebRequest -Uri $DataSourceURI -Method Get -UseBasicParsing
 $Results = $Results | ConvertFrom-Json
 
