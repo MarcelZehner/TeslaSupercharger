@@ -24,3 +24,5 @@ This repository contains a fully working management solution for Azure Log Analy
 1. Deploy using the "Deploy to Azure" button
 2. Deploy the master.json file using PowerShell, Azure CLI or any other appropriate tool
 3. Open the project using Visual Studio (with the Azure SDK installed) and deploy from there 
+
+Have fun!
