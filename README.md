@@ -1,6 +1,6 @@
 # Tesla Supercharger Management Solution
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMarcelZehner%2FTeslaSupercharger%2Fmaster%2FLogAnalyticsSolution-TeslaSupercharger%2Fmaster.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMarcelZehner%2FTeslaSupercharger%2Fmaster%2F%2Fmaster.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
@@ -23,4 +23,3 @@ This repository contains a fully working management solution for Azure Log Analy
 ## Deployment
 1. Deploy using the "Deploy to Azure" button
 2. Deploy the master.json file using PowerShell, Azure CLI or any other appropriate tool
-3. Open the project using Visual Studio (with the Azure SDK installed) and deploy from there 

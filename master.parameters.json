@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "LogAnalyticsWorkspaceName": {
-      "value": "TM18Test6"
+      "value": "d-loa-eleu18-01"
     },
     "AutomationAccountName": {
-      "value": "TM18Test6"
+      "value": "d-aut-eleu18-01"
     }
   }
 }

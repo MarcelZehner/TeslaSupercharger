@@ -54,6 +54,11 @@
       "name": "[toLower(parameters('LogAnalyticsWorkspaceName'))]",
       "apiVersion": "[variables('APIVersions').OperationalInsights]",
       "location": "[resourceGroup().location]",
+      "properties": {
+        "sku":{
+          "name": "PerGB2018"
+        }
+      },
       "resources": [
         {
           "type": "savedSearches",
